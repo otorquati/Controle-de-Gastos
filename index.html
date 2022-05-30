@@ -5,20 +5,51 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema de Controle de Gastos</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <form action="exemplo.html">
+    <form>
       <div>
         <div><label>Email:</label></div>
-        <input type="email" name="email" placeholder="digite seu@email.com">
+        <input type="email" name="email" placeholder="digite seu@email.com" id="email" onchange="validateFields()">
       </div>
       <div>
-        <label>Senha:</label>
-        <input type="password" name="senha" placeholder="Senha">
+        <div><label>Senha:</label></div>
+        <input type="password" name="senha" placeholder="Senha" id="password" onchange="validateFields()">
       </div>
-      <div><button type="button">Recuperar senha</button></div>
-      <div><button type="submit">Entrar</button></div>
-      <div><button type="button">Registrar</button></div>
+      <div><button type="button" class="clear" id="recover-password-button" disabled="true">Recuperar senha</button></div>
+      <div><button type="submit" class="solid" id="login-button" disabled="true" >Entrar</button></div>
+      <div><button type="button" class="outline" disabled="true">Registrar</button></div>
     </form>
 </body>
+<script>
+  function validateFields() {
+    // pegar o valor do campo e-mail
+    const emailValid = isEmailValid();
+    // verificar se o email não é vazio e se é um e-mail válido
+    document.getElementById('recover-password-button').disabled = !emailValid;
+    // se verdadeiro, habilitar o botão recuperar senha
+    const passwordValid = isPassWordValid();
+    document.getElementById('login-button').disabled = !emailValid || !passwordValid;
+    // se feito, então desabilitar o botão de recuperar senha
+  }
+  function isEmailValid() {
+    const email = document.getElementById("email").value;
+    if (!email) {
+      return false;
+    }
+    return validateEmail(email);
+  }
+
+  function isPassWordValid() {
+    const password = document.getElementById('password').value;
+    if (!password) {
+      return false;
+    }
+    return true;
+  }
+  function validateEmail(email){
+    return /\S+@\S+\.\S+/.test(email);
+  }
+</script>
 </html>
