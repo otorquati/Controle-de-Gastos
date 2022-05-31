@@ -16,35 +16,12 @@ form{
 }
 input, button {
   padding: 5px;
-  margin-bottom: 5px;
   width: -webkit-fill-available;
-}
-.clear{
-  background: transparent;
-  border: none;
-  color: white;
 }
 button{
   cursor: pointer;
+  margin-bottom: 10px;
 }
-button:active{
-  opacity: 0.8;
-}
-button[disabled]{
-  opacity: 0.7;
-}
-.solid{
-background: white;
-border: none;
-color: rgb(45,211,111);
-}
-.outline{
-background: transparent;
-color: white;
-border: 1px solid white;
-}
-.error{
-  background: red;
-  color: white;
-  display: none;
+.form-field{
+  margin-bottom: 10px;
 }
