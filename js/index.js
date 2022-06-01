@@ -8,7 +8,21 @@ function onChangePassword() {
   togglePasswordErrors();
 }
 function login() {
-  window.location.href = "pages/home/home.html";
+  firebase.auth().signInWithEmailAndPassword(form.email().value, form.password().value).then(response => {
+    window.location.href = "pages/home/home.html";
+  }).catch(error => {
+    alert(getErrorMessage(error));
+    
+  });
+
+ // window.location.href = "pages/home/home.html";
+}
+
+function getErrorMessage(error) {
+  if (error.code == "auth/user-not-found") {
+    return "Usuário não encontrado";
+  }
+  return error.message;
 }
 
 function register() {
