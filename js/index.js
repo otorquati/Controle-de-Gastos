@@ -8,9 +8,13 @@ function onChangePassword() {
   togglePasswordErrors();
 }
 function login() {
-  firebase.auth().signInWithEmailAndPassword(form.email().value, form.password().value).then(response => {
+  showLoading();
+  firebase.auth().signInWithEmailAndPassword(form.email().value, form.password().value).then(response => { 
+    hideLoading();
     window.location.href = "pages/home/home.html";
+   
   }).catch(error => {
+    hideLoading();
     alert(getErrorMessage(error));
     
   });
@@ -26,7 +30,7 @@ function getErrorMessage(error) {
 }
 
 function register() {
-  window.location.href = "pages/register/register.html";
+   window.location.href = "pages/register/register.html";
 }
 
 function isEmailValid() {
